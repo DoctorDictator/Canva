@@ -1,0 +1,25 @@
+# Dependencies
+/node_modules
+/.next
+/.turbo
+/drizzle
+
+# Environment Variables
+.env*
+!.env.example
+
+# Logs
+*.log
+
+# Build/lock files
+bun.lock
+dist
+build
+
+# IDE stuff
+.vscode
+*.swp
+
+# System
+.DS_Store
+Thumbs.db
