@@ -1,7 +1,7 @@
-# Canva Clone Project
+# Canva Project
 
 # Overview
-The Canva Clone Project is a web-based graphic design application inspired by Canva, designed to provide users with a robust and intuitive platform for creating custom designs. This project replicates core functionalities such as template customization, text and shape manipulation, and image editing, catering to both novice and experienced designers. The application prioritizes modularity, performance, and scalability, leveraging modern web technologies and Bun as the runtime and package manager.
+The Canva Project is a web-based graphic design application inspired by Canva, designed to provide users with a robust and intuitive platform for creating custom designs. This project replicates core functionalities such as template customization, text and shape manipulation, and image editing, catering to both novice and experienced designers. The application prioritizes modularity, performance, and scalability, leveraging modern web technologies and Bun as the runtime and package manager.
 
 # Features
 - Intuitive Design Interface: A streamlined and user-friendly interface for creating and editing designs.
@@ -13,13 +13,11 @@ The Canva Clone Project is a web-based graphic design application inspired by Ca
 - Responsive Design: Optimized for seamless use across desktops, tablets, and mobile devices.
 
 # Technology Stack
-- React: JavaScript library for building interactive user interfaces.
+- Next.js: For building interactive user interfaces and supports server-side logic.
 - TypeScript: Adds static typing to JavaScript for enhanced code reliability.
-- Vite: A high-performance front-end build tool for rapid development.
 - Tailwind CSS: Utility-first CSS framework for efficient and responsive styling.
-- Canvas API: Enables graphic rendering and manipulation in the editor.
+- Canvas (fabric.js): Enables graphic rendering and manipulation in the editor.
 - Bun: A fast all-in-one JavaScript runtime and package manager for development and build processes.
-- Node.js: Supports server-side logic (if applicable).
 
 # Prerequisites
 Before setting up the project, ensure the following are installed:
@@ -67,15 +65,6 @@ To set up the Canva Clone Project locally, follow these steps:
 # Exporting Designs
 - Save your work or export designs in your preferred format via the export menu.
 
-# Project Structure
-- `src/`: Contains source code, including React components, TypeScript files, and styles.
-- `public/`: Static assets such as images and icons.
-- `dist/`: Output directory for production builds.
-- `.env`: Configuration file for environment variables (e.g., API endpoints).
-- `package.json`: Project metadata and dependency configurations.
-- `tsconfig.json`: TypeScript configuration for the project.
-- `bun.lockb`: Bun’s lockfile for reproducible dependency installations.
-
 # Contributing
 Contributions are encouraged! To contribute:
 1. Fork the repository.
@@ -90,7 +79,7 @@ Please follow the project’s coding standards and include tests where applicabl
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 # Contact
-For questions, suggestions, or issues, please open an issue on the [GitHub repository](https://github.com/DoctorDictator/Canva) or contact the project maintainers.
+For questions, suggestions, or issues, please open an issue on the [GitHub repository](https://github.com/DoctorDictator/Canva).
 
 # Notes
 - Bun Integration: This README assumes Bun is used for dependency management (`bun install`) and running scripts (`bun run dev`, `bun run build`). Bun’s compatibility with Vite is leveraged for development and production builds.
