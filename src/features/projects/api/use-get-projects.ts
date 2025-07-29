@@ -19,11 +19,6 @@ export const useGetProjects = () => {
           page: (pageParam as number).toString(),
           limit: "5",
         },
-          fetch: (url, init) =>
-          fetch(url, {
-            ...init,
-            credentials: "include", // ✅ crucial for sending cookies
-          }),
       });
 
       if (!response.ok) {
