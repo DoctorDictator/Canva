@@ -15,7 +15,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Canva",
-  description: "A web-based graphic design application inspired by Canva, offering template customization, text and shape manipulation, and image editing with a focus on modularity, performance, and scalability.",
+  description:
+    "A web-based graphic design application inspired by Canva, offering template customization, text and shape manipulation, and image editing with a focus on modularity, performance, and scalability.",
 };
 
 export default async function RootLayout({

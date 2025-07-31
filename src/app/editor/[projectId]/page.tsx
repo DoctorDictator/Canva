@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Loader, TriangleAlert } from "lucide-react";
 import { use } from "react"; // Import React.use
+import "@uploadthing/react/styles.css";
 
 import { useGetProject } from "@/features/projects/api/use-get-project";
 

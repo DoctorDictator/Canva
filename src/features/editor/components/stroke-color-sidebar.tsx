@@ -10,7 +10,7 @@ interface StrokeColorSidebarProps {
   editor: Editor | undefined;
   activeTool: ActiveTool;
   onChangeActiveTool: (tool: ActiveTool) => void;
-};
+}
 
 export const StrokeColorSidebar = ({
   editor,
@@ -30,8 +30,8 @@ export const StrokeColorSidebar = ({
   return (
     <aside
       className={cn(
-        "bg-white relative border-r z-[40] w-[360px] h-full flex flex-col",
-        activeTool === "stroke-color" ? "visible" : "hidden",
+        "bg-gradient-to-b from-blue-50 to-indigo-50 relative border-r border-blue-200 z-[40] w-[360px] h-full flex flex-col shadow-xl",
+        activeTool === "stroke-color" ? "visible" : "hidden"
       )}
     >
       <ToolSidebarHeader
@@ -40,10 +40,7 @@ export const StrokeColorSidebar = ({
       />
       <ScrollArea>
         <div className="p-4 space-y-6">
-          <ColorPicker
-            value={value}
-            onChange={onChange}
-          />
+          <ColorPicker value={value} onChange={onChange} />
         </div>
       </ScrollArea>
       <ToolSidebarClose onClick={onClose} />

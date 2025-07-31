@@ -50,7 +50,7 @@ export const TemplateSidebar = ({
   return (
     <aside
       className={cn(
-        "bg-white relative border-r z-[40] w-[360px] h-full flex flex-col",
+        "bg-gradient-to-b from-blue-50 to-indigo-50 relative border-r border-blue-200 z-[40] w-[360px] h-full flex flex-col shadow-xl",
         activeTool === "templates" ? "visible" : "hidden"
       )}
     >
@@ -60,14 +60,14 @@ export const TemplateSidebar = ({
         description="Choose from a variety of templates to get started"
       />
       {isLoading && (
-        <div className="flex items-center justify-center flex-1">
-          <Loader className="size-4 text-muted-foreground animate-spin" />
+        <div className="flex items-center justify-center flex-1 bg-blue-50">
+          <Loader className="size-6 text-blue-700 animate-spin" />
         </div>
       )}
       {isError && (
-        <div className="flex flex-col gap-y-4 items-center justify-center flex-1">
-          <AlertTriangle className="size-4 text-muted-foreground" />
-          <p className="text-muted-foreground text-xs">
+        <div className="flex flex-col gap-y-4 items-center justify-center flex-1 bg-red-50">
+          <AlertTriangle className="size-6 text-red-700" />
+          <p className="text-red-800 text-sm font-semibold">
             Failed to fetch templates
           </p>
         </div>
@@ -84,7 +84,7 @@ export const TemplateSidebar = ({
                     }}
                     onClick={() => onClick(template)}
                     key={template.id}
-                    className="relative w-full group hover:opacity-75 transition bg-muted rounded-sm overflow-hidden border"
+                    className="relative w-full group hover:opacity-75 transition bg-blue-50 rounded-xl overflow-hidden border border-blue-200 shadow-md hover:bg-blue-100"
                   >
                     <Image
                       fill
@@ -93,11 +93,11 @@ export const TemplateSidebar = ({
                       className="object-cover"
                     />
                     {template.isPro && (
-                      <div className="absolute top-2 right-2 size-8 items-center flex justify-center bg-black/50 rounded-full">
+                      <div className="absolute top-2 right-2 size-8 items-center flex justify-center bg-blue-900/50 rounded-full">
                         <Crown className="size-4 fill-yellow-500 text-yellow-500" />
                       </div>
                     )}
-                    <div className="opacity-0 group-hover:opacity-100 absolute left-0 bottom-0 w-full text-[10px] truncate text-white p-1 bg-black/50 text-left">
+                    <div className="opacity-0 group-hover:opacity-100 absolute left-0 bottom-0 w-full text-[10px] truncate text-blue-100 hover:underline p-1 bg-blue-900/70 text-left">
                       {template.name}
                     </div>
                   </button>

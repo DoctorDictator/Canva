@@ -81,11 +81,51 @@ export const Editor = ({ initialData }: EditorProps) => {
   const canvasRef = useRef(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const hueRef = useRef(0);
+  const isHoveringRef = useRef(false);
+  const mousePosRef = useRef({ x: 0, y: 0 });
+
+  const updateBackground = () => {
+    if (!containerRef.current) return;
+
+    const hue = hueRef.current;
+    const currentColor = `hsl(${hue}, 70%, 80%)`;
+    const color1 = `hsl(${(hue + 0) % 360}, 80%, 50%)`;
+    const color2 = `hsl(${(hue + 60) % 360}, 80%, 50%)`;
+    const color3 = `hsl(${(hue + 120) % 360}, 80%, 50%)`;
+    const color4 = `hsl(${(hue + 180) % 360}, 80%, 50%)`;
+    const color5 = `hsl(${(hue + 240) % 360}, 80%, 50%)`;
+    const color6 = `hsl(${(hue + 300) % 360}, 80%, 50%)`;
+
+    if (isHoveringRef.current) {
+      const { x, y } = mousePosRef.current;
+      containerRef.current.style.background = `radial-gradient(100px circle at ${x}px ${y}px, ${color1} 0%, ${color2} 20%, ${color3} 40%, ${color4} 60%, ${color5} 80%, ${color6} 100%, transparent 100%), ${currentColor}`;
+    } else {
+      containerRef.current.style.background = currentColor;
+    }
+  };
+
+  useEffect(() => {
+    let rafId: number;
+
+    const animate = () => {
+      hueRef.current = (hueRef.current + 1) % 360;
+      updateBackground();
+      rafId = requestAnimationFrame(animate);
+    };
+
+    rafId = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(rafId);
+  }, []);
+
   useEffect(() => {
     const canvas = new fabric.Canvas(canvasRef.current, {
       controlsAboveOverlay: true,
       preserveObjectStacking: true,
     });
+
+    canvas.setBackgroundColor("transparent", canvas.renderAll.bind(canvas));
 
     init({
       initialCanvas: canvas,
@@ -106,10 +146,31 @@ export const Editor = ({ initialData }: EditorProps) => {
         onChangeActiveTool={onChangeActiveTool}
       />
       <div className="absolute h-[calc(100%-68px)] w-full top-[68px] flex">
-        <Sidebar
-          activeTool={activeTool}
-          onChangeActiveTool={onChangeActiveTool}
-        />
+        <main className="bg-muted flex-1 overflow-auto relative flex flex-col">
+          <Toolbar
+            editor={editor}
+            activeTool={activeTool}
+            onChangeActiveTool={onChangeActiveTool}
+            key={JSON.stringify(editor?.canvas.getActiveObject())}
+          />
+          <div
+            className="flex-1 h-[calc(100%-124px)]"
+            ref={containerRef}
+            onMouseMove={(e) => {
+              mousePosRef.current = {
+                x: e.nativeEvent.offsetX,
+                y: e.nativeEvent.offsetY,
+              };
+              if (isHoveringRef.current) {
+                updateBackground();
+              }
+            }}
+          >
+            <canvas ref={canvasRef} />
+          </div>
+          <Footer editor={editor} />
+        </main>
+
         <ShapeSidebar
           editor={editor}
           activeTool={activeTool}
@@ -180,21 +241,10 @@ export const Editor = ({ initialData }: EditorProps) => {
           activeTool={activeTool}
           onChangeActiveTool={onChangeActiveTool}
         />
-        <main className="bg-muted flex-1 overflow-auto relative flex flex-col">
-          <Toolbar
-            editor={editor}
-            activeTool={activeTool}
-            onChangeActiveTool={onChangeActiveTool}
-            key={JSON.stringify(editor?.canvas.getActiveObject())}
-          />
-          <div
-            className="flex-1 h-[calc(100%-124px)] bg-muted"
-            ref={containerRef}
-          >
-            <canvas ref={canvasRef} />
-          </div>
-          <Footer editor={editor} />
-        </main>
+        <Sidebar
+          activeTool={activeTool}
+          onChangeActiveTool={onChangeActiveTool}
+        />
       </div>
     </div>
   );
