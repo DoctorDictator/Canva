@@ -9,7 +9,13 @@ import Credentials from "next-auth/providers/credentials";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 
 import { db } from "@/db/drizzle";
-import { users } from "@/db/schema";
+import {
+  accounts,
+  authenticators,
+  sessions,
+  users,
+  verificationTokens,
+} from "@/db/schema";
 
 const CredentialsSchema = z.object({
   email: z.string().email(),
@@ -29,7 +35,13 @@ declare module "@auth/core/jwt" {
 }
 
 export default {
-  adapter: DrizzleAdapter(db),
+  adapter: DrizzleAdapter(db, {
+    users,
+    accounts,
+    sessions,
+    verificationTokens,
+    authenticators,
+  }),
   providers: [
     Credentials({
       credentials: {
