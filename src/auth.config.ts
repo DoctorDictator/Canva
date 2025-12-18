@@ -35,12 +35,12 @@ declare module "@auth/core/jwt" {
 }
 
 export default {
-  adapter: DrizzleAdapter(db, {
-    users,
-    accounts,
-    sessions,
-    verificationTokens,
-    authenticators,
+    adapter: DrizzleAdapter(db, {
+    usersTable: users,
+    accountsTable: accounts,
+    sessionsTable: sessions,
+    verificationTokensTable: verificationTokens,
+    authenticatorsTable: authenticators,
   }),
   providers: [
     Credentials({
